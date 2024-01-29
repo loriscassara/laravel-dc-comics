@@ -9,6 +9,12 @@
                     <a href="{{ route('comics.show', $comic->id) }}"><img src="{{ $comic->thumb }}" class="comics-img"
                         alt="{{ $comic->title }}"></a>
                     <h3 class="comics-title">{{ strtoupper($comic->title) }}</h3>
+                    <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Cancella" class="btn btn-danger">
+                    </form>
+                    <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-warning">Modifica</a>
                 </div>
             @endforeach
         </div>

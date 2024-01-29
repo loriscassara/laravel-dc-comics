@@ -10,6 +10,7 @@
         </div>
         <div class="row">
             <p>{{ $comic->description }}</p>
+            <a href="{{ route('comics.index') }}" class="btn btn-warning">Indietro</a>
         </div>
     </div>
 @endsection
