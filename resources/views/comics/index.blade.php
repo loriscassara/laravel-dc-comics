@@ -1,34 +1,37 @@
 @extends('layouts.app')
 
-{{-- Comics container --}}
 @section('content')
+    {{-- comics card section --}}
     <div class="container">
-        <div class="row">
-            <h1 class="text-center fw-bold">Comics</h1>
-        </div>
-        <div class="row">
-            @foreach($comics as $comic)
-                <div class="col-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
-                            <div class="card-title">
-                                <h6 class="fw-bold text-center pt-2 text-uppercase">{{ $comic->title }}</h6>
-                                <hr>
-                            </div>
-                            <div class="card-subtitle">
-                                <p class="text-center fw-bold fst-italic pt-3 m-0">Descrizione</p>
-                                <p class="text-center">{{ $comic->description  }}</p>
-                                <hr>
-                                <p class="m-1"><span class="fw-bold fst-italic">Serie:</span> {{ $comic->series }}</p>
-                                <p class="m-1"><span class="fw-bold fst-italic">Data di uscita:</span> {{ $comic->sale_date }}</p>
-                                <p class="m-1"><span class="fw-bold fst-italic">Tipologia:</span> {{ $comic->type }}</p>
-                                <p class="text-end m-0 pt-2 fw-bold">{{ $comic->price }}</p>
-                            </div>
-                        </div>
-                    </div>
+        <div id="cardsWrapper">
+            @foreach ($comics as $comic)
+                <div class="myCard">
+                    <a href="{{ route('comics.show', $comic->id) }}"><img src="{{ $comic->thumb }}" class="comics-img"
+                        alt="{{ $comic->title }}"></a>
+                    <h3 class="comics-title">{{ strtoupper($comic->title) }}</h3>
                 </div>
             @endforeach
         </div>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary">
+                <h3 class="loadText">LOAD MORE</h3>
+            </button>
+        </div>
     </div>
+
+    {{-- clients section --}}
+    <section id="buyRow">
+        <div class="container d-flex justify-content-center p-5">
+            <div class="d-flex align-items-center">
+                @foreach ($dati['clients'] as $client)
+                    <div class="text-center ps-5 pe-2">
+                        <img class="buy-img" src="{{ $client['image'] }}" alt="">
+                        <div class="mt-2">
+                            <h3 class="buy-text">{{ strtoupper($client['title']) }}</h3>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 @endsection
