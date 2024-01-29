@@ -23,7 +23,10 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        $comics = Comic::all();
+        $dati = config('data');
+
+        return view('comics.create', compact('comics', 'dati'));
     }
 
     /**
@@ -39,9 +42,9 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
+        $dati = config('data');
         
-        
-        return view('comics.show', compact('comic'));
+        return view('comics.show', compact('comic', 'dati'));
     }
 
     /**
